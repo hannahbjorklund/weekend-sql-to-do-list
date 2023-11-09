@@ -12,7 +12,7 @@
   <header>
     <h1>SQL TO-DO List</h1>
   </header>
-  <form>
+  <form onsubmit="addToDo(event)">
     <input
     id="toDoText" 
     type="text" 
@@ -30,6 +30,12 @@
     </thead>
     <tbody>
       <!-- This is where the todo items will go -->
+      <tr id="toDoItem" data-testid="toDoItem">
+        <td id="todo-status">📝 in progress</td>
+        <td>Finish the weekend sql todo list</td>
+        <td><button onclick="completeToDo()" data-testid="completeButton">Complete</button></td>
+        <td><button onclick="removeToDo()" data-testid="deleteButton">Delete</button></td>
+      </tr>
     </tbody>
   </table>
 </body>
