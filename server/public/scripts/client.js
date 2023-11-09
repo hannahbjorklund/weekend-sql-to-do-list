@@ -34,6 +34,23 @@ function getToDos(){
 // Displays the current list of todos on the DOM
 function renderToDos(todos){
     console.log("Inside renderToDos");
+    
+    // Get HTML element where we will put the todos
+    let tableBody = document.getElementById("tableBody");
+    tableBody.innerHTML = '';
+
+    // Loop through the array of todos and add each to the DOM
+    for(let todo of todos){
+        tableBody.innerHTML += `
+        <tr id="toDoItem" data-testid="toDoItem">
+            <td id="todo-status">📝 in progress</td>
+            <td>${todo.text}</td>
+            <td><button onclick="completeToDo()" data-testid="completeButton">Complete</button></td>
+            <td><button onclick="removeToDo()" data-testid="deleteButton">Delete</button></td>
+        </tr>
+        `
+    }
 }
 
+// Grab the todos first thing
 getToDos();

@@ -6,9 +6,7 @@ router.get('/', (req, res) => {
     console.log("Got a GET request at /todos");
 
     // Making a SQL query to send to the database
-    let sqlQueryText = `
-    SELECT * FROM "todos"
-    `
+    let sqlQueryText = `SELECT * FROM "todos"`
 
     // Send the query to the db
     pool.query(sqlQueryText)
