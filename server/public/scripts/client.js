@@ -19,6 +19,16 @@ function removeToDo(event, todoId){
 // Grabs the list of todos from the server, then calls renderToDos
 function getToDos(){
     console.log("Inside getToDos");
+    // GET route
+    axios({
+        method: 'GET',
+        url: '/todos'
+    }).then((response) => {
+        console.log("/todos received a GET request", response.data);
+        renderToDos(response.data);
+    }).catch((error) => {
+        console.log("Error in /todos GET request", error);
+    });
 }
 
 // Displays the current list of todos on the DOM
@@ -26,4 +36,4 @@ function renderToDos(todos){
     console.log("Inside renderToDos");
 }
 
-
+getToDos();
