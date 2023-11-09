@@ -12,6 +12,25 @@
   <header>
     <h1>SQL TO-DO List</h1>
   </header>
-
+  <form>
+    <input
+    id="toDoText" 
+    type="text" 
+    placeholder="To-Do" 
+    data-testid="toDoTextInput"
+    >
+    <button data-testid="submitButton">Create</button>
+  </form>
+  <table>
+    <thead>
+      <th>Status</th>
+      <th>To-Do</th>
+      <th>Complete</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      <!-- This is where the todo items will go -->
+    </tbody>
+  </table>
 </body>
 </html>
