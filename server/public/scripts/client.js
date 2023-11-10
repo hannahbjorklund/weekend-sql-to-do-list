@@ -37,8 +37,20 @@ function completeToDo(event, todoId){
 }
 
 // Remove the given todo item from the todo database
-function removeToDo(event, todoId){
+function removeToDo(todoId){
     console.log("Inside removeToDo");
+
+    // Create DELETE route
+    axios({
+        method: 'DELETE',
+        url: `/todos/${todoId}`,
+    }).then((response) => {
+        console.log("Deleted to-do with id ", todoId);
+        // Make sure DOM reflects changes
+        getToDos();
+    }).catch((error) => {
+        console.log("ERROR, could not DELETE todo");
+    })
 }
 
 // Grabs the list of todos from the server, then calls renderToDos
@@ -71,7 +83,7 @@ function renderToDos(todos){
             <td id="todo-status">📝 in progress</td>
             <td>${todo.text}</td>
             <td><button onclick="completeToDo()" data-testid="completeButton">Complete</button></td>
-            <td><button onclick="removeToDo()" data-testid="deleteButton">Delete</button></td>
+            <td><button onclick="removeToDo('${todo.id}')" data-testid="deleteButton">Delete</button></td>
         </tr>
         `
     }
