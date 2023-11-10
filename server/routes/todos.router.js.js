@@ -58,5 +58,22 @@ router.delete('/:id', (req, res) => {
 })
 
 // PUT route that will update the isComplete property of a todo
+router.put('/:id', (req, res) => {
+    let toDoToComplete = req.params.id;
+    const sqlQueryText = `
+    UPDATE "todos"
+        SET "isComplete" = true
+        WHERE "id" = $1;`;
+    
+    const sqlValues = [toDoToComplete];
+
+    pool.query(sqlQueryText, sqlValues)
+    .then((dbResult) => {
+        res.sendStatus(201);
+    }).catch((dbError) => {
+        console.log("ERROR in PUT:", dbError);
+        res.sendStatus(500);
+    })
+})
 
 module.exports = router;

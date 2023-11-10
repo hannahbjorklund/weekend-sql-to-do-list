@@ -33,7 +33,21 @@ function addToDo(event){
 
 // Tells the server to update the isComplete property of the given todo item
 function completeToDo(event, todoId){
-    console.log("Inside completeToDo")
+    event.preventDefault();
+    console.log("Inside completeToDo");
+    
+    // PUT request
+    axios({
+        method: 'PUT',
+        url: `/todos/${todoId}`
+    }).then((response) => {
+        console.log("Completed to-do w/ id", todoId);
+        getToDos();
+    }).catch((error) => {
+        console.log("ERROR in PUT:", error);
+    })
+    // Add the complete class to the completed todo items
+    // event.target.parentElement.parentElement.classList.add('completed');
 }
 
 // Remove the given todo item from the todo database
@@ -75,14 +89,21 @@ function renderToDos(todos){
     // Get HTML element where we will put the todos
     let tableBody = document.getElementById("tableBody");
     tableBody.innerHTML = '';
-
+    
     // Loop through the array of todos and add each to the DOM
     for(let todo of todos){
+        let todoClass = ``;
+        let todoStatus = `📝 in progress`;
+        if(todo.isComplete){
+            todoClass = `class = "completed"`;
+            todoStatus = `✅ complete`;
+        }
+        
         tableBody.innerHTML += `
-        <tr id="toDoItem" data-testid="toDoItem">
-            <td id="todo-status">📝 in progress</td>
+        <tr ${todoClass} id="toDoItem" data-testid="toDoItem">
+            <td>${todoStatus}</td>
             <td>${todo.text}</td>
-            <td><button onclick="completeToDo()" data-testid="completeButton">Complete</button></td>
+            <td><button onclick="completeToDo(event, '${todo.id}')" data-testid="completeButton">Complete</button></td>
             <td><button onclick="removeToDo('${todo.id}')" data-testid="deleteButton">Delete</button></td>
         </tr>
         `
