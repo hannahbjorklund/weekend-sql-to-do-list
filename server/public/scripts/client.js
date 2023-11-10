@@ -4,6 +4,31 @@ console.log('JS is sourced!');
 function addToDo(event){
     event.preventDefault();
     console.log("Inside addToDo");
+
+    // Get user input
+    let toDoText = document.getElementById('toDoText').value;
+
+    // Create a todo object that we will send to the server
+    let newToDo = {text: toDoText};
+    console.log("Created a new to-do:", newToDo);
+
+    // POST
+    axios({
+        method: 'POST',
+        url: '/todos',
+        data: newToDo
+    }).then((response) => {
+        // Once we get the okay from the server, we must
+        //  re-get the updated to-dos list and render the changes
+        console.log("POST request successful, rendering changes");
+        getToDos();
+    }).catch((error) => {
+        console.log("Couldn't execute POST,", error);
+    })
+
+    // Clear the user input field
+    document.getElementById('toDoText').value = '';
+
 }
 
 // Tells the server to update the isComplete property of the given todo item
@@ -11,7 +36,7 @@ function completeToDo(event, todoId){
     console.log("Inside completeToDo")
 }
 
-// Remove the given todo item from the todo dattabase
+// Remove the given todo item from the todo database
 function removeToDo(event, todoId){
     console.log("Inside removeToDo");
 }

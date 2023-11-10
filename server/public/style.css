@@ -1,3 +1,4 @@
 .completed{
-    color: green;
+    /* This will give complete to-do items a strikethrough */
+    text-decoration: line-through;
 }
