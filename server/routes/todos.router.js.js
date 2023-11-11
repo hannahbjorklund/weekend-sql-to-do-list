@@ -6,7 +6,9 @@ router.get('/', (req, res) => {
     console.log("Got a GET request at /todos");
 
     // Making a SQL query
-    let sqlQueryText = `SELECT * FROM "todos";`;
+    // Order it so completed to-dos are sent to bottom
+    let sqlQueryText = `SELECT * FROM "todos"
+        ORDER BY "isComplete";`;
 
     // Send the query to the db
     pool.query(sqlQueryText)
@@ -60,12 +62,15 @@ router.delete('/:id', (req, res) => {
 // PUT route that will update the isComplete property of a todo
 router.put('/:id', (req, res) => {
     let toDoToComplete = req.params.id;
+    let timestamp = req.body;
+    console.log("TIMESTAMP", timestamp);
+    
     const sqlQueryText = `
     UPDATE "todos"
-        SET "isComplete" = true
-        WHERE "id" = $1;`;
+        SET "isComplete" = true, "completedAt" = $1
+        WHERE "id" = $2;`;
     
-    const sqlValues = [toDoToComplete];
+    const sqlValues = [timestamp.t, toDoToComplete];
 
     pool.query(sqlQueryText, sqlValues)
     .then((dbResult) => {

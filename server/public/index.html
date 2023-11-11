@@ -21,22 +21,19 @@
     >
     <button data-testid="submitButton">Create</button>
   </form>
-  <table>
-    <thead>
-      <th>Status</th>
-      <th>To-Do</th>
-      <th>Complete</th>
-      <th>Delete</th>
-    </thead>
-    <tbody id="tableBody">
-      <!-- This is where the todo items will go -->
-      <tr id="toDoItem" data-testid="toDoItem">
-        <td id="todo-status">📝 in progress</td>
-        <td>Finish the weekend sql todo list</td>
-        <td><button onclick="completeToDo()" data-testid="completeButton">Complete</button></td>
-        <td><button onclick="removeToDo()" data-testid="deleteButton">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
+  <section class="tableSection">
+    <table>
+      <thead>
+        <th>Status</th>
+        <th>To-Do</th>
+        <th>Completed At</th>
+        <th>Complete</th>
+        <th>Delete</th>
+      </thead>
+      <tbody id="tableBody">
+        <!-- This is where the todo items will go -->
+      </tbody>
+    </table>
+  </section>
 </body>
 </html>

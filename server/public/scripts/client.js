@@ -35,19 +35,19 @@ function addToDo(event){
 function completeToDo(event, todoId){
     event.preventDefault();
     console.log("Inside completeToDo");
+    const t = new Date(Date.now()).toISOString();
     
     // PUT request
     axios({
         method: 'PUT',
-        url: `/todos/${todoId}`
+        url: `/todos/${todoId}`,
+        data: {t}
     }).then((response) => {
         console.log("Completed to-do w/ id", todoId);
         getToDos();
     }).catch((error) => {
         console.log("ERROR in PUT:", error);
     })
-    // Add the complete class to the completed todo items
-    // event.target.parentElement.parentElement.classList.add('completed');
 }
 
 // Remove the given todo item from the todo database
@@ -103,8 +103,9 @@ function renderToDos(todos){
         <tr ${todoClass} id="toDoItem" data-testid="toDoItem">
             <td>${todoStatus}</td>
             <td>${todo.text}</td>
-            <td><button onclick="completeToDo(event, '${todo.id}')" data-testid="completeButton">Complete</button></td>
-            <td><button onclick="removeToDo('${todo.id}')" data-testid="deleteButton">Delete</button></td>
+            <td>${todo.completedAt}</td>
+            <td><button onclick="completeToDo(event, '${todo.id}')" data-testid="completeButton">✔️</button></td>
+            <td><button onclick="removeToDo('${todo.id}')" data-testid="deleteButton">🗑️</button></td>
         </tr>
         `
     }

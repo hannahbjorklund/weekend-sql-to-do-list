@@ -1,4 +1,17 @@
 .completed{
-    /* This will give complete to-do items a strikethrough */
     color: green;
+}
+
+table{
+    width: 50%;
+    text-align: center;
+    background-image: url("notebook-paper.png");
+    background-position-x: 79px;
+    background-position-y: 5px;
+    background-size: 670px;
+    background-repeat:repeat-x;
+}
+
+thead{
+    font-size: large;
 }
