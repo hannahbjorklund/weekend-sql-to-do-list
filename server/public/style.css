@@ -1,13 +1,14 @@
 html{
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 header{
     text-align: center;
-    background-color: lightskyblue;
-    padding: 1%;
+    background-image: url("clouds.gif");
+    background-size: cover;
+    padding: 2%;
     font-size: larger;
-    color: white;
+    color: rgb(130, 123, 123);
 }
 
 form{
@@ -19,17 +20,7 @@ form{
     color: green;
 }
 
-body{
-    background-color: aliceblue;
-}
-
 table{
-    background-image: url("notebook-paper.png");
-    background-position-x: 79px;
-    background-position-y: 5px;
-    background-size: 670px;
-    background-repeat:repeat-x;
-    width: 50%;
     text-align: center;
     margin: auto;
     border: 1px solid black;
@@ -37,4 +28,13 @@ table{
 
 thead{
     font-size: large;
+}
+
+body{
+    background-color: aliceblue;
+}
+
+input{
+    width: 50%;
+    padding: 0.5%;
 }

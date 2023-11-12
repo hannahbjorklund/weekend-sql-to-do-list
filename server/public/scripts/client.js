@@ -50,6 +50,7 @@ function completeToDo(event, todoId){
     })
 }
 
+// Function that will make a confirm popup upon pressing the delete button for a task
 function confirmDelete(todoId){
     let result = confirm("Are you sure you want to delete?");
     if(result){
@@ -101,18 +102,30 @@ function renderToDos(todos){
     for(let todo of todos){
         let todoClass = ``;
         let todoStatus = `📝 in progress`;
+        let todoCell = ``;
         if(todo.isComplete){
+            // This was for base mode
             todoClass = `class = "completed"`;
             todoStatus = `✅ complete`;
+            todoCell = `class = "table-success"`;
+        }
+        let todoTime = todo.completedAt;
+        if(todoTime){
+            // Making this more readable to the user
+            todoTime = todoTime.toString();
+            todoTime = todoTime.replace('T', ' ');
+            todoTime = todoTime.slice(0, -8);
+        }else{
+            todoTime = '-';
         }
         
         tableBody.innerHTML += `
         <tr ${todoClass} id="toDoItem" data-testid="toDoItem">
-            <td>${todoStatus}</td>
-            <td>${todo.text}</td>
-            <td>${todo.completedAt}</td>
-            <td><button onclick="completeToDo(event, '${todo.id}')" data-testid="completeButton">✔️</button></td>
-            <td><button onclick="confirmDelete('${todo.id}')" data-testid="deleteButton">🗑️</button></td>
+            <td ${todoCell}>${todoStatus}</td>
+            <td ${todoCell}>${todo.text}</td>
+            <td ${todoCell}>${todoTime}</td>
+            <td ${todoCell}><button class="btn btn-outline-success" onclick="completeToDo(event, '${todo.id}')" data-testid="completeButton">✔️</button></td>
+            <td ${todoCell}><button class="btn btn-outline-danger" onclick="confirmDelete('${todo.id}')" data-testid="deleteButton">🗑️</button></td>
         </tr>
         `
     }
