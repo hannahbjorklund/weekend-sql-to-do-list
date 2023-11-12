@@ -1,15 +1,38 @@
+html{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+header{
+    text-align: center;
+    background-color: lightskyblue;
+    padding: 1%;
+    font-size: larger;
+    color: white;
+}
+
+form{
+    padding: 2%;
+    text-align: center;
+}
+
 .completed{
     color: green;
 }
 
+body{
+    background-color: aliceblue;
+}
+
 table{
-    width: 50%;
-    text-align: center;
     background-image: url("notebook-paper.png");
     background-position-x: 79px;
     background-position-y: 5px;
     background-size: 670px;
     background-repeat:repeat-x;
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    border: 1px solid black;
 }
 
 thead{

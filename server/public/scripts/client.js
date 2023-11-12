@@ -50,10 +50,17 @@ function completeToDo(event, todoId){
     })
 }
 
+function confirmDelete(todoId){
+    let result = confirm("Are you sure you want to delete?");
+    if(result){
+        removeToDo(todoId);
+    }
+}
+
 // Remove the given todo item from the todo database
 function removeToDo(todoId){
     console.log("Inside removeToDo");
-
+    
     // Create DELETE route
     axios({
         method: 'DELETE',
@@ -105,7 +112,7 @@ function renderToDos(todos){
             <td>${todo.text}</td>
             <td>${todo.completedAt}</td>
             <td><button onclick="completeToDo(event, '${todo.id}')" data-testid="completeButton">✔️</button></td>
-            <td><button onclick="removeToDo('${todo.id}')" data-testid="deleteButton">🗑️</button></td>
+            <td><button onclick="confirmDelete('${todo.id}')" data-testid="deleteButton">🗑️</button></td>
         </tr>
         `
     }
