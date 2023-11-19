@@ -52,7 +52,7 @@ router.delete('/:id', (req, res) => {
 
     pool.query(sqlQueryText, sqlValues)
     .then((dbResult) => {
-        res.sendStatus(201);
+        res.sendStatus(200);
     }).catch((dbError) => {
         console.log("Oh god the DELETE didn't work");
         res.sendStatus(500);
