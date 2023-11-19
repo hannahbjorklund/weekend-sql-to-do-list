@@ -3,7 +3,8 @@ const app = express();
 
 const todos = require('./routes/todos.router.js');
 
-let PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5001;
+const someSecret = process.env.MY_SUPER_SECRET;
 
 // Do not modify this!
 if (process.env.NODE_ENV == 'test') {
